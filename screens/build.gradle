@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion projectCompileSdkVersion
-    buildToolsVersion projectBuildToolsVersion
 
     defaultConfig {
         minSdkVersion projectMinSdkVersion
@@ -20,7 +19,6 @@ android {
 
 dependencies {
     // Optional compile only dependencies
-    compileOnly supportCoreUi
     compileOnly supportDesign
     testImplementation supportDesign
     compileOnly ankoCommons
@@ -30,7 +28,6 @@ dependencies {
     implementation kotlinStdLib
     // Rx libs
     implementation rxJava
-    implementation rxAndroid
     implementation rxRelay
 
     testImplementation kotlinTest

@@ -1,8 +1,8 @@
 package com.cleverlance.mobile.android.screens.view
 
-import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.PagerAdapter
 import com.cleverlance.mobile.android.screens.domain.Screen
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

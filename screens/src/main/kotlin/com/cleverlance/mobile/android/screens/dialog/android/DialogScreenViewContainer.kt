@@ -1,7 +1,7 @@
 package com.cleverlance.mobile.android.screens.dialog.android
 
 import android.app.Activity
-import android.support.annotation.MainThread
+import androidx.annotation.MainThread
 import io.reactivex.disposables.Disposable
 
 /** Creates dialogView view based on provided screen and shows it  */

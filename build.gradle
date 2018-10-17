@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlinVersion = '1.1.51'
+    ext.kotlinVersion = '1.2.71'
 
     repositories {
         jcenter()
@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
@@ -24,20 +24,17 @@ task clean(type: Delete) {
 }
 
 ext {
-    projectBuildToolsVersion = '27.0.0'
-    projectCompileSdkVersion = 26
-    projectMinSdkVersion = 9
-    projectTargetSdkVersion = 26
+    projectCompileSdkVersion = 28
+    projectMinSdkVersion = 14
+    projectTargetSdkVersion = 28
 
-    androidSupportVersion = '25.3.1'
+    androidxVersion='1.0.0'
     ankoVersion = '0.10.1'
-    daggerVersion = '2.10'
     spekVersion = '1.1.2'
 
     // Core libs
-    supportCoreUi = "com.android.support:support-core-ui:$androidSupportVersion"
-    supportAppCompat = "com.android.support:appcompat-v7:$androidSupportVersion"
-    supportDesign = "com.android.support:design:$androidSupportVersion"
+    supportAppCompat = "androidx.appcompat:appcompat:$androidxVersion"
+    supportDesign = "com.google.android.material:material:$androidxVersion"
     kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     ankoCommons = "org.jetbrains.anko:anko-commons:$ankoVersion"
@@ -46,9 +43,9 @@ ext {
     ankoAppCompat = "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     ankoDesign = "org.jetbrains.anko:anko-design:$ankoVersion"
     // Rx libs
-    rxJava = 'io.reactivex.rxjava2:rxjava:2.0.9'
-    rxAndroid = 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    rxRelay = 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    rxJava = 'io.reactivex.rxjava2:rxjava:2.2.2'
+    rxAndroid = 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    rxRelay = 'com.jakewharton.rxrelay2:rxrelay:2.1.0'
     // Testing libs
     spekApi = "org.jetbrains.spek:spek-api:$spekVersion"
     spekJUnitPlatformEngine = "org.jetbrains.spek:spek-junit-platform-engine:$spekVersion"

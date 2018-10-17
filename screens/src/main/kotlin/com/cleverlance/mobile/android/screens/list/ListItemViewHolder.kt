@@ -1,7 +1,7 @@
 package com.cleverlance.mobile.android.screens.list
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.Disposables
 
 class ListItemViewHolder<out V : ListItemView<P>, P : Any>(
