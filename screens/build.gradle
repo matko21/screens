@@ -30,10 +30,12 @@ dependencies {
     implementation rxJava
     implementation rxRelay
 
+    testImplementation kotlinReflect
     testImplementation kotlinTest
     testImplementation spekApi
     testImplementation spekJUnitPlatformEngine
     testImplementation spekSubjectExtension
+    testImplementation jUnitJupiterApi
     testImplementation jUnitPlatformRunner
     testImplementation mockitoKotlin
     testImplementation hamkrest

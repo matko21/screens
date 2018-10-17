@@ -1,27 +1,22 @@
 package com.cleverlance.mobile.android.screens.dialog.flow
 
-import com.cleverlance.mobile.android.screens.dialog.DialogResultCallback
 import com.cleverlance.mobile.android.screens.dialog.android.DialogScreen
+import com.cleverlance.mobile.android.screens.dialog.android.NoDialogScreen
 import com.cleverlance.mobile.android.screens.dialog.android.ScreenDispatcher
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.disposables.Disposable
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.subject.SubjectSpek
 import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 
 @RunWith(JUnitPlatform::class)
-class OneSlotScreenFlowTest : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
-    val dialogResultCallback: DialogResultCallback<*> = mock()
-
+class OneSlotScreenFlowSpek : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
     subject {
-        reset(dialogResultCallback)
-        OneSlotScreenFlow<DialogScreen>()
+        OneSlotScreenFlow(NoDialogScreen())
     }
 
     it("show dialog view when dialog screen set") {
@@ -31,10 +26,12 @@ class OneSlotScreenFlowTest : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
         }
         subject.subscribe(dispatcher)
 
-        val screen = mock(DialogScreen::class.java)
-        subject.show(screen, dialogResultCallback)
+        reset(dispatcher)
 
-        verify<ScreenDispatcher<DialogScreen>>(dispatcher).show(screen)
+        val screen: DialogScreen = mock()
+        subject.show(screen)
+
+        verify(dispatcher).show(screen)
     }
 
     it("hide dialog view when dialog screen dismissed") {
@@ -44,8 +41,10 @@ class OneSlotScreenFlowTest : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
         }
         subject.subscribe(dispatcher)
 
+        reset(dispatcher)
+
         val screen = mock(DialogScreen::class.java)
-        val dismissScreen = subject.show(screen, dialogResultCallback)
+        val dismissScreen = subject.show(screen)
 
         dismissScreen.dispose()
 
@@ -60,7 +59,9 @@ class OneSlotScreenFlowTest : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
 
         val unsubscribeDispatcher = subject.subscribe(dispatcher)
 
-        subject.show(mock(), mock())
+        reset(dispatcher)
+
+        subject.show(mock())
 
         unsubscribeDispatcher.dispose()
 
@@ -68,14 +69,14 @@ class OneSlotScreenFlowTest : SubjectSpek<OneSlotScreenFlow<DialogScreen>>({
     }
 
     it("dialog view visibility switching") {
-        val dismissScreenView1 = mock<Disposable>()
-        val dialogScreenDispatcher1 = mock<ScreenDispatcher<DialogScreen>> {
-            whenever(it.show(any())).thenReturn(dismissScreenView1)
-        }
+        val dialogScreenDispatcher1 = mock<ScreenDispatcher<DialogScreen>>()
         val subscription1 = subject.subscribe(dialogScreenDispatcher1)
 
+        val dismissScreenView1 = mock<Disposable>()
+        whenever(dialogScreenDispatcher1.show(any())).thenReturn(dismissScreenView1)
+
         val screen = mock(DialogScreen::class.java)
-        subject.show(screen, dialogResultCallback)
+        subject.show(screen)
 
         verify<ScreenDispatcher<DialogScreen>>(dialogScreenDispatcher1).show(screen)
 

@@ -1,9 +1,10 @@
 buildscript {
     ext.kotlinVersion = '1.2.71'
+    ext.junitPlatformVersion = '1.0.2'
 
     repositories {
+        google()
         jcenter()
-        maven { url 'https://maven.google.com/' }
     }
 
     dependencies {
@@ -14,13 +15,9 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
-        maven { url 'https://maven.google.com/' }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
 
 ext {
@@ -29,12 +26,13 @@ ext {
     projectTargetSdkVersion = 28
 
     androidxVersion='1.0.0'
-    ankoVersion = '0.10.1'
-    spekVersion = '1.1.2'
+    ankoVersion = '0.10.4'
+    spekVersion = '1.1.5'
 
     // Core libs
     supportAppCompat = "androidx.appcompat:appcompat:$androidxVersion"
     supportDesign = "com.google.android.material:material:$androidxVersion"
+    kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     ankoCommons = "org.jetbrains.anko:anko-commons:$ankoVersion"
@@ -50,7 +48,8 @@ ext {
     spekApi = "org.jetbrains.spek:spek-api:$spekVersion"
     spekJUnitPlatformEngine = "org.jetbrains.spek:spek-junit-platform-engine:$spekVersion"
     spekSubjectExtension = "org.jetbrains.spek:spek-subject-extension:$spekVersion"
-    jUnitPlatformRunner = 'org.junit.platform:junit-platform-runner:1.0.0-M4'
+    jUnitJupiterApi = "org.junit.jupiter:junit-jupiter-api:5.0.0"
+    jUnitPlatformRunner = "org.junit.platform:junit-platform-runner:1.0.0"
     mockitoKotlin = 'com.nhaarman:mockito-kotlin:1.4.0'
     hamkrest = 'com.natpryce:hamkrest:1.4.0.0'
     androidSupportTestRunner = 'com.android.support.test:runner:0.5'
