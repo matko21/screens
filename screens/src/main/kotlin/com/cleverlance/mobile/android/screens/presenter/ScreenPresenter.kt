@@ -1,6 +1,5 @@
 package com.cleverlance.mobile.android.screens.presenter
 
-import android.app.Activity
 import com.cleverlance.mobile.android.screens.domain.BaseScreen
 import com.cleverlance.mobile.android.screens.domain.NoScreen
 import com.cleverlance.mobile.android.screens.domain.ScreenFactory
@@ -12,13 +11,10 @@ import io.reactivex.disposables.Disposables
 class ScreenPresenter {
     private val screen: BehaviorRelay<BaseScreen> = BehaviorRelay.createDefault(NoScreen())
 
-    fun back(activity: Activity): Boolean = getScreen().onBackPressed()
+    fun back(): Boolean = screen.value!!.onBackPressed()
 
     // TODO pass NoScreen or not?
     fun screenObservable(): Observable<BaseScreen> = screen.filter { it !is NoScreen }
-
-    @Deprecated(message = "probably nobody should need this - each screen knows that it shows itself")
-            /* private */ fun getScreen(): BaseScreen = screen.value
 
     fun setScreen(screen: BaseScreen) = this.screen.accept(screen)
 
@@ -27,7 +23,7 @@ class ScreenPresenter {
     }
 
     fun onDisposeShowCurrent(): Disposable {
-        val previousScreen = getScreen() // capture current screen
+        val previousScreen = screen.value!!
         return Disposables.fromRunnable { setScreen(previousScreen) }
     }
 }

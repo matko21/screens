@@ -30,7 +30,7 @@ internal class ScreenPresenterSpec : SubjectSpek<ScreenPresenter>({
 
             subject.setScreen(screen)
 
-            assertThat(subject.getScreen(), equalTo(screen))
+            subject.screenObservable().test().assertValue(screen)
         }
     }
 
@@ -43,7 +43,6 @@ internal class ScreenPresenterSpec : SubjectSpek<ScreenPresenter>({
             subject.onDisposeShowCurrent().dispose()
 
             subject.screenObservable().test().assertValue(firstScreen)
-            assertThat(subject.getScreen(), equalTo(firstScreen))
         }
     }
 
@@ -66,7 +65,7 @@ internal class ScreenPresenterSpec : SubjectSpek<ScreenPresenter>({
                 whenever(it.onBackPressed()).thenReturn(false)
             }
             subject.setScreen(screen)
-            assertThat(subject.back(mock()), equalTo(false))
+            assertThat(subject.back(), equalTo(false))
         }
     }
 

@@ -44,7 +44,7 @@ internal class ScreenInvokerSpec : SubjectSpek<ScreenInvoker>({
 
             assertThat(allValues.size, equalTo(1))
             println(lastValue)
-            assertThat(subject.screenPresenter.back(mock()), equalTo(true))
+            assertThat(subject.screenPresenter.back(), equalTo(true))
             verify(dispose).dispose()
         }
     }
@@ -57,9 +57,9 @@ internal class ScreenInvokerSpec : SubjectSpek<ScreenInvoker>({
 
             subject.showScreen()
 
-            assertThat(subject.screenPresenter.back(mock()), equalTo(true)) // back consumed
+            assertThat(subject.screenPresenter.back(), equalTo(true)) // back consumed
 
-            assertThat(subject.screenPresenter.getScreen(), equalTo(firstScreen))
+            subject.screenPresenter.screenObservable().test().assertValue(firstScreen)
         }
     }
 })

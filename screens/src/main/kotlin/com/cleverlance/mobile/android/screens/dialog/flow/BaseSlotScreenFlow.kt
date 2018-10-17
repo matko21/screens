@@ -12,7 +12,7 @@ abstract class BaseSlotScreenFlow<ScreenType> : ScreenFlow<ScreenType> {
     private val currentScreenSubject = BehaviorRelay.createDefault(NO_SCREEN)
 
     protected var currentScreen: ScreenType
-        get() = currentScreenSubject.value
+        get() = currentScreenSubject.value!!
         set(screen) = currentScreenSubject.accept(screen)
 
     /** @return subscription can be used to unbind */
