@@ -1,6 +1,6 @@
 package com.cleverlance.mobile.android.screens.view
 
-import android.support.v4.view.PagerAdapter
+import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
@@ -9,9 +9,9 @@ import com.cleverlance.mobile.android.screens.domain.createSelfBindingView
 
 abstract class ScreenPagerAdapter : PagerAdapter() {
 
-    override fun instantiateItem(container: ViewGroup, position: Int) =
+    override fun instantiateItem(container: ViewGroup, position: Int): View =
             createScreenContainer(container, getScreen(position))
-                    .apply { container.addView(this) }
+                    .apply { container.addView(this) } ?: View(container.context)
 
     abstract fun getScreen(position: Int): Screen
 

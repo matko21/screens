@@ -47,7 +47,7 @@ internal class ScreenPresenterSpec : SubjectSpek<ScreenPresenter>({
                 whenever(it.onBackPressed()).thenReturn(false)
             }
             subject.screen = screen
-            assertThat(subject.back(mock()), equalTo(false))
+            assertThat(subject.back(), equalTo(false))
         }
     }
 })
