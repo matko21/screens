@@ -1,13 +1,14 @@
 package com.cleverlance.mobile.android.screens.domain
 
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 abstract class BaseScreen : Screen() {
 
-    lateinit var dispose: Disposable
+    lateinit var dispose: CompositeDisposable
 
     fun onShow(dispose: Disposable) {
-        this.dispose = dispose
+        this.dispose = CompositeDisposable(dispose)
     }
 
     /** @return true if back action was consumed by the call */
