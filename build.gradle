@@ -32,6 +32,7 @@ ext {
     // Core libs
     supportAppCompat = "androidx.appcompat:appcompat:$androidxVersion"
     supportDesign = "com.google.android.material:material:$androidxVersion"
+    androixPaging = "androidx.paging:paging-runtime-ktx:2.1.0"
     kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"

@@ -23,6 +23,7 @@ dependencies {
     testImplementation supportDesign
     compileOnly ankoCommons
     compileOnly ankoSdk15
+    compileOnly androixPaging
 
     // Core libs
     implementation kotlinStdLib
