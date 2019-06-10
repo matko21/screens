@@ -21,9 +21,9 @@ allprojects {
 }
 
 ext {
-    projectCompileSdkVersion = 28
-    projectMinSdkVersion = 14
-    projectTargetSdkVersion = 28
+    projectCompileSdkVersion = 29
+    projectMinSdkVersion = 21
+    projectTargetSdkVersion = 29
 
     androidxVersion='1.0.0'
     ankoVersion = '0.10.4'
